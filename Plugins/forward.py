@@ -1,6 +1,7 @@
 import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#logging.basicConfig(level=logging.DEBUG,
+#                   format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
 logger = logging.getLogger(__name__)
 
 import asyncio
@@ -12,12 +13,20 @@ from config import Config
 async def forward(client, message):
     # Forwarding the messages to the channel
    try:
+      AS_COPY = True # Set to True if you want to copy the message, or False if you want to forward without making a copy
+
       for id in Config.CHANNEL:
          from_channel, to_channel = id.split(":")
+
          if message.chat.id == int(from_channel):
-            func = message.copy if AS_COPY else message.forward
-            await func(int(to_channel), as_copy=True)
+
+            if AS_COPY==True: 
+               await message.copy(chat_id=int(to_channel))
+            else:
+               await message.forward(chat_id=int(to_channel))
+            
             logger.info("Forwarded a message from", from_channel, "to", to_channel)
+
             await asyncio.sleep(1)
    except Exception as e:
       logger.exception(e)

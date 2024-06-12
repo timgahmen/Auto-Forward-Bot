@@ -1,3 +1,5 @@
 uvloop
 tgcrypto
 pyrogram
+#dotenv
+load_dotenv

@@ -7,4 +7,4 @@ class Translation(object):
       ABOUT = """
 <b>📝 Language:</b> Python 3
 <b>🧰 Framework:</b> Pyrogram
-<b>👨‍💻 Developer:</b> 𝐀𝐧𝐨𝐧𝐲𝐦𝐨𝐮𝐬
+<b>👨‍💻 Developer:</b> 𝐀𝐧𝐨𝐧𝐲𝐦𝐨𝐮𝐬"""
